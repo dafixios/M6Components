@@ -36,18 +36,17 @@
   </v-toolbar>
 </template>
 
-<script lang="ts">
-import {
-  Component, Prop, Vue
-} from 'vue-property-decorator'
+<script >
 
-@Component({})
+
 // eslint-disable-next-line vue/require-direct-export
-export default class M6Toolbar extends Vue {
-  @Prop({
-    type: Boolean,
-    required: true,
-    default: false
-  }) readonly showSideIcon!: boolean
+export default {
+  props: {
+    showSideIcon: {
+      type: Boolean,
+      default: false,
+      required: true
+    }
+  }
 }
 </script>
