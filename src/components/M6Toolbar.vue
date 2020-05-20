@@ -1,6 +1,6 @@
 <template>
   <v-toolbar
-    class="m6-connect-toolbar"
+    class="m6_toolbar"
     dark
     flat
     height="46"
@@ -38,9 +38,8 @@
 
 <script >
 
-
-// eslint-disable-next-line vue/require-direct-export
 export default {
+  name: 'M6Toolbar',
   props: {
     showSideIcon: {
       type: Boolean,
@@ -50,3 +49,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.m6-connect-toolbar {
+  background-color: #0277bd !important;
+  .v-image {
+    cursor: pointer;
+  }
+}
+</style>
