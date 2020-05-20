@@ -31,6 +31,7 @@
 
     <v-toolbar-side-icon
       v-if="showSideIcon"
+      @click="emitSideIcon"
       class="hidden-md-and-up"
     />
   </v-toolbar>
@@ -46,12 +47,17 @@ export default {
       default: false,
       required: true
     }
+  },
+  methods:{
+    emitSideIcon(){
+      this.$emit('sideIcon')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.m6-connect-toolbar {
+.m6_toolbar {
   background-color: #0277bd !important;
   .v-image {
     cursor: pointer;

@@ -5753,6 +5753,11 @@ istanbul-reports@^2.2.6:
   dependencies:
     html-escaper "^2.0.0"
 
+javascript-detect-element-resize@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/javascript-detect-element-resize/-/javascript-detect-element-resize-0.5.3.tgz#1a71cd51dfe565907f299012fe73a294104025de"
+  integrity sha1-GnHNUd/lZZB/KZAS/nOilBBAJd4=
+
 javascript-stringify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/javascript-stringify/download/javascript-stringify-2.0.1.tgz#6ef358035310e35d667c675ed63d3eb7c1aa19e5"
@@ -10262,6 +10267,20 @@ vue-loader@^15.9.1:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-mixins@^0.2.14:
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/vue-mixins/-/vue-mixins-0.2.20.tgz#f58cf2af25dd012cd81afdd3a0daf77005634a78"
+  integrity sha1-9YzyryXdASzYGv3ToNr3cAVjSng=
+  dependencies:
+    javascript-detect-element-resize "^0.5.3"
+
+vue-portal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-portal/-/vue-portal-1.0.0.tgz#a25acc25963a84576d3f8f4e78f68c37b9255fed"
+  integrity sha1-olrMJZY6hFdtP49OePaMN7klX+0=
+  dependencies:
+    vue-mixins "^0.2.14"
 
 vue-property-decorator@^8.4.2:
   version "8.4.2"
