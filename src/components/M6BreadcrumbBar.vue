@@ -6,11 +6,6 @@
     flat
     :height="height"
   >
-    <!--    <v-toolbar-side-icon-->
-    <!--      class="breadcrumb-bar-button"-->
-    <!--      @click="sidebarLeft=true"-->
-    <!--    />-->
-
     <!-- Breadcrumbs -->
     <v-breadcrumbs
       class="ma-0 pa-0"
@@ -112,9 +107,7 @@
     </v-breadcrumbs>
 
     <v-spacer />
-
     <portal-target name="destination" />
-
     <portal-target name="breadcrumb-buttons-company" />
   </v-toolbar>
 </template>
