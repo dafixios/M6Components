@@ -13,15 +13,15 @@ function dataGet(source, path = '', dfl = null) {
 
 function ffGetRef(...segments) {
   segments = segments.flat()
-  
+
   if (segments.length) {
-    let result = db;
+    let result = db
     segments.map((segment, index) => {
       result = index % 2 === 0 ? result.collection(segment) : result.doc(segment)
     })
-    return result;
+    return result
   } else {
-    return '';
+    return ''
   }
 }
 

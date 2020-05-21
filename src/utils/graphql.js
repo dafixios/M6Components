@@ -1,12 +1,12 @@
-const fBase = process.env.VUE_APP_FIREBASE_API;
+const fBase = window.Drupal.settings.m6_platform.f_base.functions.api_url
 
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const graphqlCache = new InMemoryCache();
+const graphqlCache = new InMemoryCache()
 
-export { graphqlCache };
+export { graphqlCache }
 
 export default new ApolloClient({
   // Provide the URL to the API server.
@@ -17,12 +17,12 @@ export default new ApolloClient({
 
   defaultOptions: {
     watchQuery: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "ignore"
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore'
     },
     query: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "all"
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all'
     }
   }
-});
+})

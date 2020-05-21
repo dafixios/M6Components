@@ -25,9 +25,7 @@ axios.interceptors.response.use(
     // Do something with response data
     return response
   },
-  error => {
-    return Promise.reject(error)
-  }
+  error => Promise.reject(error)
 )
 
 export default class ApiRestClass {
