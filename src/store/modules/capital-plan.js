@@ -1,4 +1,4 @@
-import { db } from '@/main.js'
+import { db } from '@/utils/Firebase.js'
 import { firestoreAction } from 'vuexfire'
 
 const state = {

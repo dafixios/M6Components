@@ -8,10 +8,6 @@ import * as Cookies from 'js-cookie'
 import { parse, stringify } from 'flatted/esm'
 
 import axiosConfig from '@/config/axios'
-import {
-  navigationModule
-} from '../components/header_sidebar/AuxFiles/navigationModule'
-
 
 import companies from './modules/companies'
 import companiesProjects from './modules/companies-projects'
@@ -203,7 +199,6 @@ export default new Vuex.Store({
     companies,
     itApplications,
     itContracts,
-    navigationModule,
     settings,
     gantt,
     tickets,

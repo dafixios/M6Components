@@ -1,4 +1,4 @@
-import { db } from '@/main.js'
+import { db } from '@/utils/Firebase'
 import router from '@/router'
 import { dataGet } from '@/utils/helpers'
 
@@ -30,11 +30,13 @@ const getters = {
 function opportunitiesPromise() {
   const auxPromise = new Promise((resolve, reject) => {
     try {
-      db.collection('settings').doc(window.Drupal.settings.m6_cpm.company_nid).collection('settings').doc('task_status').get().then(doc => {
-        const initialStatus = doc.data().status[0]
+      db.collection('settings').doc(window.Drupal.settings.m6_cpm.company_nid).collection('settings').doc('task_status')
+        .get()
+        .then(doc => {
+          const initialStatus = doc.data().status[0]
 
-        resolve(initialStatus)
-      })
+          resolve(initialStatus)
+        })
     } catch (error) {
       reject(error)
     }
@@ -242,56 +244,55 @@ const actions = {
       const dataTicket = ticketInit.data()
       let rank = 1
       let enter = false
-      db.collection('tickets').where('assignee', '==', payload.user).where('archive', '==', false).where('cid', '==', parseInt(dataTicket.cid)).orderBy('rank').get().then(tickets => {
-        if (tickets.docs.length === 1) {
-          ticketInit.ref.update({ rank: 1 })
-          return
-        }
-        tickets.docs.forEach(ticket => {
-          const ticketList = ticket.data()
-          if (enter) {
-            if (ticket.id !== ticketInit.id) {
-              ticket.ref.update({ rank: rank })
-            } else {
-              rank--
-            }
-          } else {
-            if (ticket.id !== ticketInit.id) {
-              if (dataTicket.priority === ticketList.priority) {
-                ticketInit.ref.update({ rank: (rank) })
+      db.collection('tickets').where('assignee', '==', payload.user).where('archive', '==', false).where('cid', '==', parseInt(dataTicket.cid))
+        .orderBy('rank')
+        .get()
+        .then(tickets => {
+          if (tickets.docs.length === 1) {
+            ticketInit.ref.update({ rank: 1 })
+            return
+          }
+          tickets.docs.forEach(ticket => {
+            const ticketList = ticket.data()
+            if (enter) {
+              if (ticket.id !== ticketInit.id) {
+                ticket.ref.update({ rank })
               } else {
-                if (dataTicket.priority.toLowerCase() === 'critical') {
-                  ticketInit.ref.update({ rank: rank })
+                rank--
+              }
+            } else if (ticket.id !== ticketInit.id) {
+              if (dataTicket.priority === ticketList.priority) {
+                ticketInit.ref.update({ rank })
+              } else if (dataTicket.priority.toLowerCase() === 'critical') {
+                ticketInit.ref.update({ rank })
+                rank++
+
+                ticket.ref.update({ rank })
+                enter = true
+              } else if (dataTicket.priority.toLowerCase() === 'high') {
+                if (ticketList.priority.toLowerCase() === 'normal' || ticketList.priority.toLowerCase() === 'low') {
+                  ticketInit.ref.update({ rank })
                   rank++
 
-                  ticket.ref.update({ rank: (rank) })
+                  ticket.ref.update({ rank })
                   enter = true
-                } else if (dataTicket.priority.toLowerCase() === 'high') {
-                  if (ticketList.priority.toLowerCase() === 'normal' || ticketList.priority.toLowerCase() === 'low') {
-                    ticketInit.ref.update({ rank: rank })
-                    rank++
+                }
+              } else if (dataTicket.priority.toLowerCase() === 'normal') {
+                if (ticketList.priority.toLowerCase() === 'low') {
+                  ticketInit.ref.update({ rank })
+                  rank++
 
-                    ticket.ref.update({ rank: (rank) })
-                    enter = true
-                  }
-                } else if (dataTicket.priority.toLowerCase() === 'normal') {
-                  if (ticketList.priority.toLowerCase() === 'low') {
-                    ticketInit.ref.update({ rank: rank })
-                    rank++
-
-                    ticket.ref.update({ rank: (rank) })
-                    enter = true
-                  }
+                  ticket.ref.update({ rank })
+                  enter = true
                 }
               }
             } else {
-              ticketInit.ref.update({ rank: (rank) })
+              ticketInit.ref.update({ rank })
               enter = true
             }
-          }
-          rank++
+            rank++
+          })
         })
-      })
       context.commit('setBussy', false)
     })
   },
@@ -303,7 +304,7 @@ const actions = {
 
     const selectedGanttValue = dataGet(getters, 'selectedGantt.value')
     if (!selectedGanttValue) return Promise.reject()
-    
+
     return new Promise((resolve, reject) => {
       db
         .collection('cpm_projects')

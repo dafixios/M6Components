@@ -10,13 +10,13 @@ Vue.use(firestorePlugin)
 
 export let db = {}
 export let storage = {}
-export const initFirebase = () => {
-  firebase.initializeApp(window.Drupal.settings.m6_platform.f_base.config)
+export const initFirebase = fBase => {
+  firebase.initializeApp(fBase.config)
   function init() {
     // Authenticate through token
     firebase
       .auth()
-      .signInWithCustomToken(window.Drupal.settings.m6_platform.f_base.token)
+      .signInWithCustomToken(fBase.token)
       .then()
       .catch(error => {
         // eslint-disable-next-line no-console
