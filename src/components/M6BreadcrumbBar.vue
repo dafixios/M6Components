@@ -6,6 +6,7 @@
     flat
     :height="height"
   >
+    <portal-target name="breadcrumb-start" />
     <!-- Breadcrumbs -->
     <v-breadcrumbs
       class="ma-0 pa-0"
