@@ -10,7 +10,7 @@
       <v-img
         contain
         max-width="160"
-        src="https://www.m6connect.com/sites/default/files/m6-home-logo.png"
+        src="https://www.apps.m6connect.com/sites/default/files/m6-home-logo.png"
       />
     </slot>
 
