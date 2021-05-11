@@ -20,7 +20,7 @@
     "gql-query-builder": "^3.3.0",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-i18n": "^8.17.7",
